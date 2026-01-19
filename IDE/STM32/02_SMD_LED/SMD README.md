@@ -313,6 +313,8 @@ void RGB_Demo_Rainbow(void)
 | 색상이 반대로 동작 | 공통 애노드 타입 | PWM 극성 반전 |
 | 색상이 어두움 | PWM 주기 문제 | Period 값 조정 |
 | 특정 색상만 동작 | GPIO 설정 오류 | AF 설정 확인 |
+
+
 🖼️ 이미지 (Images)
 Tera Term
 <br>
