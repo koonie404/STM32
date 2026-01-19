@@ -317,7 +317,7 @@ void RGB_Demo_Rainbow(void)
 
 Tera Term
 <br>
-<img width="452" height="403" alt="image" src="https://github.com/user-attachments/assets/35fcc268-7297-4046-9883-050ff592c806" />
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/35fcc268-7297-4046-9883-050ff592c806" />
 
 ## 📚 참고 자료
 
