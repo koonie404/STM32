@@ -170,8 +170,6 @@ int __io_putchar(int ch) {
 ```
 
 ```c
-    while (1)
-    {
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -486,6 +484,15 @@ PWM을 이용해 부드럽게 전환
 | Yellow가 안 나옴 | PWM 불균형 | 각 채널 밝기 조정 |
 | 색상이 반대 | 핀 매핑 오류 | PA6/PA7 확인 |
 | 깜빡임 현상 | PWM 주파수 낮음 | Period 값 감소 |
+
+
+##🖼️ 이미지 (Images)
+
+Tera Term
+<br>
+<img width="100" height="200" alt="스크린샷 2026-01-19 140518" src="https://github.com/user-attachments/assets/b7e0ee2b-3be1-4960-9947-95b519f393a5" />
+
+
 
 ## 💡 응용 예제
 
