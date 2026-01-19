@@ -313,6 +313,7 @@ void RGB_Demo_Rainbow(void)
 | 색상이 어두움 | PWM 주기 문제 | Period 값 조정 |
 | 특정 색상만 동작 | GPIO 설정 오류 | AF 설정 확인 |
 
+## 🖼️ 이미지 (Images)
 ## Tera Term
 <img width="827" height="550" alt="스크린샷 2026-01-19 105406" src="https://github.com/user-attachments/assets/6a0d92ce-e77e-4c52-9ad8-2d321a267553" />
 
