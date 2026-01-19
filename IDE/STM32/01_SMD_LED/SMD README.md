@@ -78,15 +78,15 @@ void RGB_Demo_Rainbow(void);
 
 ### 색상 혼합 원리
 
-| 색상 | R | G | B | 설명 |
-|------|---|---|---|------|
-| Red | 255 | 0 | 0 | 빨강 |
-| Green | 0 | 255 | 0 | 초록 |
-| Blue | 0 | 0 | 255 | 파랑 |
-| Yellow | 255 | 255 | 0 | R + G |
-| Cyan | 0 | 255 | 255 | G + B |
-| Magenta | 255 | 0 | 255 | R + B |
-| White | 255 | 255 | 255 | R + G + B |
+| 색상 | R | G | B | 설명 | 사진 |
+|------|---|---|---|------|------|
+| Red | 255 | 0 | 0 | 빨강 |<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/4f57618d-4c50-4df8-9d36-7232648f3e94" /> |
+| Green | 0 | 255 | 0 | 초록 |<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/473a1029-ce05-41f0-9056-eaae144e6d28" /> |
+| Blue | 0 | 0 | 255 | 파랑 |<img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/0c111c82-255f-4843-a0e7-6b3cc86dd207" /> |
+| Yellow | 255 | 255 | 0 | R + G | |
+| Cyan | 0 | 255 | 255 | G + B | |
+| Magenta | 255 | 0 | 255 | R + B | |
+| White | 255 | 255 | 255 | R + G + B | |
 
 ## 📂 프로젝트 구조
 
@@ -313,6 +313,11 @@ void RGB_Demo_Rainbow(void)
 | 색상이 반대로 동작 | 공통 애노드 타입 | PWM 극성 반전 |
 | 색상이 어두움 | PWM 주기 문제 | Period 값 조정 |
 | 특정 색상만 동작 | GPIO 설정 오류 | AF 설정 확인 |
+🖼️ 이미지 (Images)
+Tera Term
+<br>
+<img width="426" height="463" alt="image" src="https://github.com/user-attachments/assets/e18dbdaa-fdd1-4265-ad6d-be14514284d0" />
+
 
 ## 📚 참고 자료
 
