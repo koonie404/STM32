@@ -77,11 +77,12 @@ void RGB_Demo_Rainbow(void);
 
 ### 색상 혼합 원리
 
-| 색상 | R | G | B | 설명 |
-|------|---|---|---|------|
-| Red | 255 | 0 | 0 | 빨강 |
-| Green | 0 | 255 | 0 | 초록 |
-| Blue | 0 | 0 | 255 | 파랑 |
+| 색상 | R | G | B | 설명 || 사진 |
+|------|---|---|---|------||------|
+| Red | 255 | 0 | 0 | 빨강 ||<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/52f5edff-3d05-445f-af21-fb54575ba404" />|
+| Green | 0 | 255 | 0 | 초록 ||<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/dc81b74b-312b-4dea-9e88-80a333880746" />
+|
+| Blue | 0 | 0 | 255 | 파랑 ||<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/f8742f9a-b560-4a22-b2bd-a2e14c4c76e7" />|
 | Yellow | 255 | 255 | 0 | R + G |
 | Cyan | 0 | 255 | 255 | G + B |
 | Magenta | 255 | 0 | 255 | R + B |
@@ -317,8 +318,6 @@ void RGB_Demo_Rainbow(void)
 [Tera Term] 
 <br>
 <img width="300" height="300" alt="스크린샷 2026-01-19 105406" src="https://github.com/user-attachments/assets/6bc792b6-0c60-49b1-811f-af759045a81f" />
-
-<img width="1502" height="1043" alt="image" src="https://github.com/user-attachments/assets/52f5edff-3d05-445f-af21-fb54575ba404" />
 
 
 ## 📚 참고 자료
