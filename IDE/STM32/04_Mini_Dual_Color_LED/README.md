@@ -537,6 +537,15 @@ void MiniLED_BatteryCharging(void)
 | Yellow가 주황색 | LED 특성 차이 | Green 밝기 증가 |
 | 밝기가 약함 | 전류 부족 | 저항값 확인 |
 
+## 🖼️ 이미지 (Images)
+
+Tera Term
+<br>
+<img width="100" height="200" alt="스크린샷 2026-01-19 154344" src="https://github.com/user-attachments/assets/6e166b5b-3a77-44cf-82a7-b4142d5d37a1" />
+
+## 테스트 결과
+![KakaoTalk_20260119_154853622](https://github.com/user-attachments/assets/87129464-76c9-4978-9b49-eca0f9346756)
+
 ## 💡 응용 예제
 
 ### IoT 연결 상태 표시기
