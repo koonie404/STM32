@@ -411,7 +411,7 @@ void display_servo_status(uint8_t pan, uint8_t tilt)
 
 | Category |      Description       | Image |
 |----------|------------------------|-------|
-|   Tilt   |   Vertical(Up/Down)    | ![KakaoTalk_20260120_121805035_02](https://github.com/user-attachments/assets/f4d995cc-f715-4ea7-91fd-2f80e4d01af9) |
+|   Tilt   |    Vertical(Up/Down)   | ![KakaoTalk_20260120_121805035_02](https://github.com/user-attachments/assets/f4d995cc-f715-4ea7-91fd-2f80e4d01af9) |
 |   Pan    | Horizontal(Left/Right) | ![KakaoTalk_20260120_122004104](https://github.com/user-attachments/assets/2dbdc422-5a14-4f38-bc14-38b9310d8c85) |
 
 
