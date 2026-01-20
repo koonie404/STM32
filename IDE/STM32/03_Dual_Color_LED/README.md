@@ -486,7 +486,7 @@ PWM을 이용해 부드럽게 전환
 | 깜빡임 현상 | PWM 주파수 낮음 | Period 값 감소 |
 
 
-## 🖼️ 이미지 (Images)
+## 🖼️ **테스트 결과 이미지 (Test Outcome Images)**
 
 Tera Term
 <br>
