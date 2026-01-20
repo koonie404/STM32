@@ -407,7 +407,7 @@ void display_servo_status(uint8_t pan, uint8_t tilt)
 ```
 
 
-
+## 🖼️ **볼드체** 테스트 결과 이미지 (Test Outcome Images)
 
 
 
