@@ -196,7 +196,8 @@ void play_mario_theme(void) {
   /* USER CODE END 3 */
 ```
 
-## 테스트 결과
+## 🖼️ **테스트 결과 이미지 (Test Outcome Images)**
+
 https://youtube.com/shorts/IVrLj4cSsEA?feature=share
 
 
