@@ -22,66 +22,187 @@
 ```
 
 ```c
+/* USER CODE BEGIN PD */
+#define delay_ms HAL_Delay
+
+#define ADDRESS   0x27 << 1
+
+#define RS1_EN1   0x05
+#define RS1_EN0   0x01
+#define RS0_EN1   0x04
+#define RS0_EN0   0x00
+#define BackLight 0x08
+/* USER CODE END PD */
+```
+
+```c
+/* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc1;
+I2C_HandleTypeDef hi2c1;
+UART_HandleTypeDef huart2;
+```
+
+```c
+/* USER CODE BEGIN PV */
+const float AVG_SLOPE = 4.3E-03;
+const float V25       = 1.43;
+const float ADC_TO_VOLT = 3.3 / 4096.0;
+
+uint16_t adc1;
+float vSense;
+float temp;
+char lcd_buf[16];
+/* USER CODE END PV */
+```
+
+```c
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+static void MX_ADC1_Init(void);
+static void MX_I2C1_Init(void);
+```
+
+```c
 /* USER CODE BEGIN PFP */
 void I2C_ScanAddresses(void);
+
+void delay_us(int us);
+void LCD_DATA(uint8_t data);
+void LCD_CMD(uint8_t cmd);
+void LCD_CMD_4bit(uint8_t cmd);
+void LCD_INIT(void);
+void LCD_XY(char x, char y);
+void LCD_CLEAR(void);
+void LCD_PUTS(char *str);
 /* USER CODE END PFP */
 ```
 
 ```c
 /* USER CODE BEGIN 0 */
 #ifdef __GNUC__
-/* With GCC, small printf (option LD Linker->Libraries->Small printf
+/* With GCC/small printf (option LD Linker -> Libraries -> small printf,
    set to 'Yes') calls __io_putchar() */
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+int __io_putchar(int ch)
 #else
-#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
-
-/**
-  * @brief  Retargets the C library printf function to the USART.
-  * @param  None
-  * @retval None
-  */
-PUTCHAR_PROTOTYPE
+int fputc(int ch, FILE *f)
+#endif
 {
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the USART1 and Loop until the end of transmission */
-  if (ch == '\n')
-    HAL_UART_Transmit (&huart2, (uint8_t*) "\r", 1, 0xFFFF);
-  HAL_UART_Transmit (&huart2, (uint8_t*) &ch, 1, 0xFFFF);
-
-  return ch;
+    if (ch == '\n')
+        HAL_UART_Transmit(&huart2, (uint8_t*)"\r", 1, 0xFFFF);
+    HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, 0xFFFF);
+    return ch;
 }
 
 void I2C_ScanAddresses(void) {
     HAL_StatusTypeDef result;
     uint8_t i;
 
-
     printf("Scanning I2C addresses...\r\n");
 
-
     for (i = 1; i < 128; i++) {
-        /*
-         * HAL_I2C_IsDeviceReady: If a device at the specified address exists return HAL_OK.
-         * Since I2C devices must have an 8-bit address, the 7-bit address is shifted left by 1 bit.
-         */
         result = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i << 1), 1, 10);
         if (result == HAL_OK) {
             printf("I2C device found at address 0x%02X\r\n", i);
         }
     }
 
-
     printf("Scan complete.\r\n");
 }
 
+void delay_us(int us){
+    volatile int cnt = us * 3;
+    while(cnt--);
+}
+
+void LCD_DATA(uint8_t data) {
+    uint8_t temp;
+    temp = (data & 0xF0) | RS1_EN1 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    temp = (data & 0xF0) | RS1_EN0 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+
+    temp = ((data << 4) & 0xF0) | RS1_EN1 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    temp = ((data << 4) & 0xF0) | RS1_EN0 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    delay_us(50);
+}
+
+void LCD_CMD(uint8_t cmd) {
+    uint8_t temp;
+    temp = (cmd & 0xF0) | RS0_EN1 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    temp = (cmd & 0xF0) | RS0_EN0 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+
+    temp = ((cmd << 4) & 0xF0) | RS0_EN1 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    temp = ((cmd << 4) & 0xF0) | RS0_EN0 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    delay_us(50);
+}
+
+void LCD_CMD_4bit(uint8_t cmd) {
+    uint8_t temp;
+    temp = ((cmd << 4) & 0xF0) | RS0_EN1 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    temp = ((cmd << 4) & 0xF0) | RS0_EN0 | BackLight;
+    HAL_I2C_Master_Transmit(&hi2c1, ADDRESS, &temp, 1, 100);
+    delay_us(50);
+}
+
+
+void LCD_INIT(void) {
+    delay_ms(100);
+    LCD_CMD_4bit(0x03); delay_ms(5);
+    LCD_CMD_4bit(0x03); delay_us(100);
+    LCD_CMD_4bit(0x03); delay_us(100);
+    LCD_CMD_4bit(0x02); delay_us(100);
+    LCD_CMD(0x28);
+    LCD_CMD(0x0C);
+    LCD_CMD(0x01);
+    delay_ms(2);
+}
+
+
+void LCD_XY(char x, char y) {
+    if (y == 0) LCD_CMD(0x80 + x);
+    else LCD_CMD(0xC0 + x);
+}
+
+void LCD_CLEAR(void) {
+    LCD_CMD(0x01);
+    delay_ms(2);
+}
+
+void LCD_PUTS(char *str) {
+    while (*str) LCD_DATA(*str++);
+}
 /* USER CODE END 0 */
 ```
 
 ```c
-  /* USER CODE BEGIN 2 */
+ /* USER CODE BEGIN 2 */
   I2C_ScanAddresses();
+
+  LCD_INIT();
+  LCD_XY(0, 0); LCD_PUTS((char *)"Temperature");
+  LCD_XY(0, 1); LCD_PUTS((char *)"Monitoring...");
+  HAL_Delay(1000);
+
+  /* Start calibration*/
+  if (HAL_ADCEx_Calibration_Start(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /* Start the conversion process*/
+  if (HAL_ADC_Start(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE END 2 */
 ```
 
@@ -274,3 +395,27 @@ void LCD_PUTS(char *str) {
   /* USER CODE END 2 */
 ```
 
+```c
+/* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+	    HAL_ADC_PollForConversion(&hadc1, 100);
+	    adc1 = HAL_ADC_GetValue(&hadc1);
+
+	    vSense = adc1 * ADC_TO_VOLT;
+	    temp = (V25 - vSense) / AVG_SLOPE + 25.0;
+
+	    snprintf(lcd_buf, sizeof(lcd_buf),
+	             "CPU ADC : %4d", adc1);
+	    LCD_XY(0, 0);
+	    LCD_PUTS(lcd_buf);
+
+	    snprintf(lcd_buf, sizeof(lcd_buf),
+	             "CPU Temp: %2.0f%cC", temp, 0xDF);
+	    LCD_XY(0, 1);
+	    LCD_PUTS(lcd_buf);
+
+	    HAL_Delay(500);
+    /* USER CODE END WHILE */
+```
