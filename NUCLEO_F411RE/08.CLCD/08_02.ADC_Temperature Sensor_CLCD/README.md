@@ -234,3 +234,7 @@ void LCD_PUTS(char *str) {
 
 <img width="200" height="100" alt="image" src="https://github.com/user-attachments/assets/dff17233-da39-4b3c-af05-aa6e3825aff3" />
 
+# 오실로스코프 파형확인(SDA 먼저 하강 , 그후 SCK 하강 → Start 조건)
+
+![Uploading KakaoTalk_20260121_131516235_01.jpg…]()
+
