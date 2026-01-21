@@ -85,6 +85,10 @@ void I2C_ScanAddresses(void) {
   /* USER CODE END 2 */
 ```
 
+## 🖼️ **테스트 결과 이미지 (Test Outcome Images)**
+
+<img width="200" height="200" alt="image" src="https://github.com/user-attachments/assets/0c959e83-178d-430e-bf30-1d41cf299142" />
+
 
 
 
