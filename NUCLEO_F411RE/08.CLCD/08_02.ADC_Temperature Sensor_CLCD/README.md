@@ -236,7 +236,7 @@ void LCD_PUTS(char *str) {
 
 # 오실로스코프 파형확인(SDA 먼저 하강 , 그후 SCK 하강 → Start 조건)
 
-![제목 없음](https://github.com/user-attachments/assets/d6900982-b88a-42ac-a2cf-8e03372c0f18)
 
+<img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/1da669f3-b4c4-4dca-84f5-ccc7dd7ffd9b" />
 
 
